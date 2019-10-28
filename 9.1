@@ -1,0 +1,32 @@
+class Account(object):
+    interest = 0.02
+
+    def inacct (self, account_numm):
+        self.balance = 0
+        self.holder = account_numm
+
+    def deposit(self, amount):
+        self.balance = self.balance + amount
+        return self.balance
+
+    def withdraw(self, amount):
+
+        if amount > self.balance:
+            return "Not enough funds in account."
+        self.balance -= amount
+        return self.balance
+
+
+class CheckingAccount(Account):
+
+    withdraw_charge = 2
+  #checkminimum_balance()
+    def withdraw(self, amount):
+        return Account.withdraw(self, amount + self.withdraw_charge)
+
+
+class SavingsAccount(Account):
+    interest = 0.02
+  #add_interest()
+    def deposit(self, amount):
+        return Account.deposit(self, amount - self.deposit_charge)
